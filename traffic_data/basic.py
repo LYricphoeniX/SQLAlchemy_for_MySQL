@@ -3,8 +3,8 @@ import sqlalchemy.orm
 from sqlalchemy import create_engine, Column, Integer, text
 from config import DB_URI
 
-engine = create_engine(DB_URI)
-Base = sqlalchemy.orm.declarative_base()  # SQL.ORM基类
+engine = create_engine(DB_URI)  # 一个只为特定数据库服务器创建一次的全局对象，充当连接到特定数据库的中心源，提供数据库连接
+Base = sqlalchemy.orm.declarative_base()  # SQL.ORM基类，所有的映射类（所有的数据表）都要继承该基类
 session = sqlalchemy.orm.sessionmaker(engine)()  # 构建session对象
 
 class Traffic(Base):

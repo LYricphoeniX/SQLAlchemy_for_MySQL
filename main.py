@@ -1,6 +1,7 @@
 from traffic_data.basic import *
 from traffic_data.orm_operator import *
-
+import sqlacodegen_v2
+import os
 
 if __name__ == '__main__':
     op = OrmOpearator()
@@ -20,6 +21,9 @@ if __name__ == '__main__':
     op.gettraffic(20240108, 1900, 1)
     op.gettraffic(20240108, 1900, 2)
     op.getod(20240108, 1900)
+
+    # 将数据库中所有表导出为models.py
+    os.system(f'sqlacodegen_v2 {DB_URI} --outfile=models.py')
 
     print(f'修改数据测试')
     op.changetraffic(20240108, 1900, 100, 500, 500, 500)
